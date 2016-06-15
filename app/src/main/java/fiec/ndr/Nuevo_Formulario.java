@@ -17,23 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.TextView;
-
 public class Nuevo_Formulario extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
 
     @Override
@@ -89,25 +76,16 @@ public class Nuevo_Formulario extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
+    /* Fragmento Datos*/
+    public static class DatosFragment extends Fragment {
+
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public PlaceholderFragment() {
+        public DatosFragment() {
         }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+        public static DatosFragment newInstance(int sectionNumber) {
+            DatosFragment fragment = new DatosFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
@@ -117,15 +95,84 @@ public class Nuevo_Formulario extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_nuevo__formulario, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_personales, container, false);
             return rootView;
         }
     }
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
+    /* Fragmento Datos*/
+    public static class MedicosFragment extends Fragment {
+
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public MedicosFragment() {
+        }
+
+        public static MedicosFragment newInstance(int sectionNumber) {
+            MedicosFragment fragment = new MedicosFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_medicos, container, false);
+            return rootView;
+        }
+    }
+
+    /* Fragmento Datos*/
+    public static class RiesgoFragment extends Fragment {
+
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public RiesgoFragment() {
+        }
+
+        public static RiesgoFragment newInstance(int sectionNumber) {
+            RiesgoFragment fragment = new RiesgoFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_riesgos, container, false);
+            return rootView;
+        }
+    }
+
+    /* Fragmento Datos*/
+    public static class SintomasFragment extends Fragment {
+
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public SintomasFragment() {
+        }
+
+        public static SintomasFragment newInstance(int sectionNumber) {
+            SintomasFragment fragment = new SintomasFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_sintomas, container, false);
+            return rootView;
+        }
+    }
+
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -134,30 +181,33 @@ public class Nuevo_Formulario extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch(position) {
+
+                case 0: return DatosFragment.newInstance(position + 1);
+                case 1: return MedicosFragment.newInstance(position + 1);
+                case 2: return RiesgoFragment.newInstance(position + 1);
+                case 3: return SintomasFragment.newInstance(position + 1);
+                default: return DatosFragment.newInstance(position + 1);
+            }
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages. A!
-            return 5;
+            return 4;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Datos";
+                    return "Datos Personales";
                 case 1:
-                    return "Indicadores";
+                    return "Medicos";
                 case 2:
-                    return "Diabetes";
+                    return "Riesgos";
                 case 3:
-                    return "Nefropatia";
-                case 4:
-                    return "Examenes";
+                    return "Sintomas";
             }
             return null;
         }
